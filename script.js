@@ -1,53 +1,85 @@
 let playerScore = 0;
 let cpuScore = 0;
 
-game();
+const rockBtn = document.querySelector(".rock-btn");
+const paperBtn = document.querySelector(".paper-btn");
+const scissorsBtn = document.querySelector(".scissors-btn");
+const resultsDiv = document.querySelector(".round-results");
+const playerScoreDiv = document.querySelector(".player-score");
+const cpuScoreDiv = document.querySelector(".cpu-score");
+const playerChoiceDiv = document.querySelector(".player-choice");
+const cpuChoiceDiv = document.querySelector(".cpu-choice");
+const playAgainBtn = document.createElement("button");
 
-function game() {
-  for (let i = 0; i < 5; i++) {
-    getPlayerChoice();
-  }
-  declareWinner();
-}
-
-function getPlayerChoice() {
-  let playerChoice = prompt("rock, paper, or scissors?").toLowerCase();
+rockBtn.addEventListener("click", () => {
+  let playerChoice = "Rock";
   getComputerChoice(playerChoice);
-}
+});
+
+paperBtn.addEventListener("click", () => {
+  let playerChoice = "Paper";
+  getComputerChoice(playerChoice);
+});
+
+scissorsBtn.addEventListener("click", () => {
+  let playerChoice = "Scissors";
+  getComputerChoice(playerChoice);
+});
 
 function getComputerChoice(playerChoice) {
-  const choices = ["rock", "paper", "scissors"];
+  const choices = ["Rock", "Paper", "Scissors"];
   let random = choices[Math.floor(Math.random() * choices.length)];
-  console.log("cpu choice is " + random + " player choice is " + playerChoice);
   playRound(playerChoice, random);
 }
 
 function playRound(playerChoice, random) {
   if (
-    (playerChoice === "rock" && random === "rock") ||
-    (playerChoice === "paper" && random === "rock") ||
-    (playerChoice === "scissors" && random === "scissors")
+    (playerChoice === "Rock" && random === "Rock") ||
+    (playerChoice === "Paper" && random === "Paper") ||
+    (playerChoice === "Scissors" && random === "Scissors")
   ) {
-    console.log("It's a tie!");
+    playerChoiceDiv.innerHTML = "Player Chose: " + playerChoice;
+    cpuChoiceDiv.innerHTML = "CPU Chose: " + random;
+    resultsDiv.innerHTML = "This Round Is A Tie!";
   } else if (
-    (playerChoice === "rock" && random === "scissors") ||
-    (playerChoice === "paper" && random === "rock") ||
-    (playerChoice === "scissors" && random === "paper")
+    (playerChoice === "Rock" && random === "Scissors") ||
+    (playerChoice === "Paper" && random === "Rock") ||
+    (playerChoice === "Scissors" && random === "Paper")
   ) {
-    console.log("You win this round!");
+    playerChoiceDiv.innerHTML = "Player Chose: " + playerChoice;
+    cpuChoiceDiv.innerHTML = "CPU Chose: " + random;
+    resultsDiv.innerHTML = "You Win This Round!";
     playerScore += 1;
+    updateScore();
   } else {
-    console.log("You loose this round!");
+    playerChoiceDiv.innerHTML = "Player Chose: " + playerChoice;
+    cpuChoiceDiv.innerHTML = "CPU Chose: " + random;
+    resultsDiv.innerHTML = "You Loose This Round!";
     cpuScore += 1;
+    updateScore();
   }
 }
 
-function declareWinner() {
-  if (playerScore > cpuScore) {
-    console.log("You won best out of 5!");
-  } else if (playerScore < cpuScore) {
-    console.log("You lost best out of 5!");
-  } else {
-    console.log("We tied best out of 5!");
+function updateScore() {
+  playerScoreDiv.innerHTML = "Player Score: " + playerScore;
+  cpuScoreDiv.innerHTML = "CPU Score: " + cpuScore;
+
+  if (playerScore === 5) {
+    resultsDiv.innerHTML = "You Win The Game!";
+    gameOver();
+  } else if (cpuScore === 5) {
+    resultsDiv.innerHTML = "You Lost The Game!";
+    gameOver();
   }
+}
+
+function gameOver() {
+  rockBtn.remove();
+  paperBtn.remove();
+  scissorsBtn.remove();
+  document.body.appendChild(playAgainBtn);
+  playAgainBtn.innerHTML = "Play Again?";
+  playAgainBtn.addEventListener("click", () => {
+    window.location.reload();
+  });
 }
