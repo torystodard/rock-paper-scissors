@@ -9,6 +9,9 @@ const playerScoreDiv = document.querySelector(".player-score");
 const cpuScoreDiv = document.querySelector(".cpu-score");
 const playerChoiceDiv = document.querySelector(".player-choice");
 const cpuChoiceDiv = document.querySelector(".cpu-choice");
+const buttonsDiv = document.querySelector(".buttons");
+const roundResultsDiv = document.querySelector(".round-results");
+const p = document.querySelector("p");
 const playAgainBtn = document.createElement("button");
 
 rockBtn.addEventListener("click", () => {
@@ -65,10 +68,12 @@ function updateScore() {
   cpuScoreDiv.innerHTML = "CPU Score: " + cpuScore;
 
   if (playerScore === 5) {
-    resultsDiv.innerHTML = "You Win The Game!";
+    p.innerHTML = "You Win The Game!";
+    p.style.color = "#e68217";
     gameOver();
   } else if (cpuScore === 5) {
-    resultsDiv.innerHTML = "You Lost The Game!";
+    p.innerHTML = "You Lost The Game!";
+    p.style.color = "#e68217";
     gameOver();
   }
 }
@@ -77,7 +82,8 @@ function gameOver() {
   rockBtn.remove();
   paperBtn.remove();
   scissorsBtn.remove();
-  document.body.appendChild(playAgainBtn);
+  roundResultsDiv.remove();
+  buttonsDiv.appendChild(playAgainBtn);
   playAgainBtn.innerHTML = "Play Again?";
   playAgainBtn.addEventListener("click", () => {
     window.location.reload();

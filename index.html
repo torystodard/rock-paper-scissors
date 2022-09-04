@@ -5,18 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
 </head>
 <body>
-    <h1>Rock, Paper, Scissors</h1>
-    <p>First one to get 5 points wins!</p>
-    <div class="player-score"> Player Score: 0</div>
-    <div class="cpu-score">CPU Score: 0</div>
-    <button class="rock-btn">Rock</button>
-    <button class="paper-btn">Paper</button>
-    <button class="scissors-btn">Scissors</button>
-    <div class="player-choice"></div>
-    <div class="cpu-choice"></div>
-    <div class="round-results"></div>
+   
+    <header>
+        <img src="./images/rps4.jpeg" alt="Rock, Paper, Scissors Picture">
+        <div class="title">
+            <h1>Rock, Paper, Scissors</h1>
+            <p>First one to get 5 points wins!</p>
+        </div>
+        <img src="./images/rps5.jpeg" alt="Rock, Paper, Scissors Picture">
+    </header>
+    <section class="ui">
+        <div class="score-board">
+            <div class="player-score"> Player Score: 0</div>
+            <div class="cpu-score">CPU Score: 0</div>
+        </div>
+        <div class="buttons">
+            <button class="rock-btn">Rock</button>
+            <button class="paper-btn">Paper</button>
+            <button class="scissors-btn">Scissors</button>
+        </div>
+        <div class="choices">
+            <div class="player-choice"></div>
+            <div class="cpu-choice"></div>
+        </div>
+        <div class="round-results"></div>
+    </section>
 </body>
 </html>
